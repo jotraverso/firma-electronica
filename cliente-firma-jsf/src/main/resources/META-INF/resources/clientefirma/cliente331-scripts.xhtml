@@ -19,7 +19,8 @@
 	<script type="text/javascript" >&lt;!--
 		var baseDownloadURL = location.protocol+"//"+location.host+"#{facesContext.externalContext.requestContextPath}/clienteFirma3_3_1";
 		var base = location.protocol+"//"+location.host+"#{facesContext.externalContext.requestContextPath}/clienteFirma3_3_1";
-		cargarAppletFirma('COMPLETA');
+		if(clienteFirma == undefined)
+			cargarAppletFirma('COMPLETA');
 	--></script>
 </h:panelGroup>
 </composite:implementation>

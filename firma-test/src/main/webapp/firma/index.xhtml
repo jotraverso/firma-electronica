@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/default.xhtml"
 	xmlns:cfirma="http://java.sun.com/jsf/composite/clientefirma">
-<!-- Cliente @Firma JSF componente demo page for project jboss-as-kitchensink. 
+<!-- Cliente @Firma JSF componente demo page for project firma-test. 
 Copyright (C) 2013  Jorge Ortega Traverso
 
 This program is free software: you can redistribute it and/or modify
@@ -34,11 +34,14 @@ Contact Information: http://saiyandev.com
 			</h:outputScript>
 	</ui:define>
 	<ui:define name="content">
-	<h:form>
-		<cfirma:cliente331-scripts load="true" />
+	<h:form onsubmit="return false;">
+		<cfirma:cliente331-scripts />
 		<cfirma:cliente331-mfm functionName="firmarXAdES" signFormat="XAdES Detached" returnOriginalData="true" />
+		<cfirma:cliente331-mfm functionName="firmarCAdES" signFormat="CAdES" returnOriginalData="false" />
+		
 		<h1>Demo firma</h1>
-		<button onclick="$('#resultado').val(JSON.stringify(firmarXAdES(jsonData))); return false;" value="Firmar">Firmar</button>
+		<button name="firmarX" onclick="$('#resultado').val(JSON.stringify(firmarXAdES(jsonData))); return false;" value="Firmar XAdES" type="button">Firmar XAdES</button>
+		<button name="firmarC" onclick="$('#resultado').val(JSON.stringify(firmarCAdES(jsonData))); return false;" value="Firmar CAdES" type="button">Firmar CAdES</button>
 		<br/>
 		Datos a firmar<br/>
 		<textarea id="datosAfirmar" name="datosAfirmar" cols="50" rows="5" contenteditable="false" ></textarea>
