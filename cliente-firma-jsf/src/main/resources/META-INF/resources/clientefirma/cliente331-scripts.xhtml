@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+<composite:interface componentType="AFirmaJSFComponent" name="cliente331-scripts"
+	displayName="Scripts Cliente @firma 3.3.1"
+	shortDescription="Scripts de carga el componente para firma electrónica 3.3.1" >
+		<composite:attribute name="load" required="false" default="true" shortDescription="Hace las funciones de 'rendered'" />
+</composite:interface>
+<composite:implementation>
+<h:panelGroup  layout="span" rendered="#{cc.attrs.load}">
+	<script type="text/javascript" language="javascript" src="#{resource['clienteFirma3_3_1:common-js/deployJava.js']}"></script>
+	<script type="text/javascript" language="javascript" src="#{resource['clienteFirma3_3_1:common-js/firma.js']}"></script>
+	<script type="text/javascript" language="javascript" src="#{resource['clienteFirma3_3_1:common-js/instalador.js']}"></script>
+	<script type="text/javascript" language="javascript" src="#{resource['clienteFirma3_3_1:constantes.js']}"></script>
+	<script type="text/javascript" >&lt;!--
+		var baseDownloadURL = location.protocol+"//"+location.host+"#{facesContext.externalContext.requestContextPath}/clienteFirma3_3_1";
+		var base = location.protocol+"//"+location.host+"#{facesContext.externalContext.requestContextPath}/clienteFirma3_3_1";
+		cargarAppletFirma('COMPLETA');
+	--></script>
+</h:panelGroup>
+</composite:implementation>
+</html>

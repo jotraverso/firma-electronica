@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+	xmlns:cfirma="http://java.sun.com/jsf/composite/clientefirma">
+<!-- Cliente @Firma JSF componente demo page for project jboss-as-kitchensink. 
+Copyright (C) 2013  Jorge Ortega Traverso
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Contact Information: http://saiyandev.com
+-->
+	<ui:define name="head">
+			<title>Testing JSF tag</title>
+			<h:outputScript >
+			var jsonData = [{"id": "1", "typeData" : "hash", "datosB64": $.base64.encode("AHKSDHKKH...")},
+				        	{"id": "2", "typeData" : "data", "datosB64": $.base64.encode("lskjflk asflsakjdf lksjdñlfk jsñdfljsañldflas")}
+      		  ];
+      		$(document).ready(function() {
+      		  $("#datosAfirmar").val(JSON.stringify(jsonData));
+      		 });
+			</h:outputScript>
+	</ui:define>
+	<ui:define name="content">
+	<h:form>
+		<cfirma:cliente331-scripts load="true" />
+		<cfirma:cliente331-mfm functionName="firmarXAdES" signFormat="XAdES Detached" returnOriginalData="true" />
+		<h1>Demo firma</h1>
+		<button onclick="$('#resultado').val(JSON.stringify(firmarXAdES(jsonData))); return false;" value="Firmar">Firmar</button>
+		<br/>
+		Datos a firmar<br/>
+		<textarea id="datosAfirmar" name="datosAfirmar" cols="50" rows="5" contenteditable="false" ></textarea>
+		<br/>Resultado<br/>
+		<textarea id="resultado" cols="50" rows="25" ></textarea>
+	</h:form>
+	</ui:define>
+</ui:composition>
